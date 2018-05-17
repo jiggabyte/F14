@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta name="viewport" content="user-scalable=no">
+    <title>F-14 Fighter</title>
+	<link rel="stylesheet" href="css/game/main.css" />
+	<link rel="stylesheet" href="css/game/background.css" />
+	<link rel="stylesheet" href="css/game/sprites.css" />
+	<script src="js/jquery/jquery-1.4.2.js"></script>
+	<script src="js/jquery/jquery.text-effects.js"></script>
+	
+	<script src="js/game/GameController.js"></script>
+	<script src="js/game/Canvas.js"></script>
+	<script src="js/game/Rectangle.js"></script>
+	<script src="js/game/GameObject.js"></script>
+	<script src="js/game/MovingGameObject.js"></script>
+	<script src="js/game/RepeatingBackground.js"></script>
+	<script src="js/game/Ship.js"></script>
+	<script src="js/game/Rocket.js"></script>
+	<script src="js/game/EnemyFactory.js"></script>
+	<script src="js/game/Enemy.js"></script>
+	<script src="js/game/EnemyRocket.js"></script>
+	<script src="js/game/MoveStrategy.js"></script>
+	<script src="js/game/SimpleMoveLeftStrategy.js"></script>
+	<script src="js/game/SimpleMoveRightStrategy.js"></script>
+	<script src="js/game/SimpleUpDownMoveStrategy.js"></script>
+	<script src="js/game/NoseDiveMoveStrategy.js"></script>
+	<script src="js/game/SmartMoveStrategy.js"></script>
+	<script src="js/game/SmartEnemy.js"></script>
+	<script src="js/game/BossEnemy.js"></script>
+	<script src="js/game/InnerBoundaryChecker.js"></script>
+	<script src="js/game/OutterBoundaryChecker.js"></script>
+	<script src="js/game/BoundaryCleaner.js"></script>
+	<script src="js/game/SimpleCollection.js"></script>
+	<script src="js/game/MovingGameObjectCollection.js"></script>
+	<script src="js/game/EnemyCollection.js"></script>
+	<script src="js/game/ScoreManager.js"></script>
+	<script src="js/game/ImagePreLoader.js"></script>
+	<script src="js/game/CollisionDetector.js"></script>
+	<script src="js/game/ScreenBuilder.js"></script>
+	<script src="js/game/CommunicationPopUp.js"></script>
+	<script src="js/game/Dashboard.js"></script>
+	<script src="js/game/Util.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var gameController = new GameController();
+			gameController.init();
+			$("#start-button").click(function(event){
+				event.preventDefault();
+				gameController.startGame();
+				$("#intro-screen").remove();
+			});
+			
+		});
+
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<br/>
+		<div id="canvas">
+			<div id="preloader">
+				<div id="progress-bar-text">Loading ...</div>
+				<div id="progress-bar-holder">
+					<div id="progress-bar"><!-- --></div>
+				</div>
+			</div>
+			<div id="intro-screen">
+				<div>
+					<a href="" id="start-button">Play</a>
+				</div>
+			</div>
+			<div id="info-screen">
+				<!-- -->
+			</div>
+			<div id="mission-panel">
+				<!-- -->
+			</div>
+
+            <img src="images/upward.png"   id="up" style="position:absolute;left:150px;top:300px;width:50px;height:50px;z-index:1500;font-size:2em;" />
+            <img src="images/downward.png" id="down" style="position:absolute;left:150px;top:400px;width:50px;height:50px;z-index:1500;font-size:2em;" />
+            <img src="images/backward.png" id="left" style="position:absolute;left:100px;top:350px;width:50px;height:50px;z-index:1500;font-size:2em;" />
+            <img src="images/forward.png"  id="right" style="position:absolute;left:200px;top:350px;width:50px;height:50px;z-index:1500;font-size:2em;" />
+
+			<img src="images/diagonal.png" class="trans" id="upleft" style="position:absolute;left:100px;top:300px;width:50px;height:50px;z-index:1500;font-size:2em;" />
+			<img src="images/diagonal.png" class="trans" id="upright" style="position:absolute;left:200px;top:300px;width:50px;height:50px;z-index:1500;font-size:2em;" />
+			<img src="images/diagonal.png" class="trans" id="downleft" style="position:absolute;left:100px;top:400px;width:50px;height:50px;z-index:1500;font-size:2em;" />
+			<img src="images/diagonal.png" class="trans" id="downright" style="position:absolute;left:200px;top:400px;width:50px;height:50px;z-index:1500;font-size:2em;" />
+
+			<img src="images/fire.png" id="fire" style="position:absolute;left:800px;top:320px;width:80px;height:80px;z-index:1500;font-size:2em;" />
+
+
+		</div>
+
+
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
