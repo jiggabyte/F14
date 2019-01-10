@@ -7,7 +7,7 @@ function GameController(){
 	var that = this;
 	var canvas;
 	var backgrounds = new MovingGameObjectCollection();
-	var flightArea = new Rectangle(0, 0, 990, 375);;
+	var flightArea = new Rectangle(0, 0, 990, 375);
 	var ship;
 	var rockets = new MovingGameObjectCollection();
 	var enemyFactory;
@@ -70,102 +70,170 @@ function GameController(){
 
 	var activateControlKeys = function () {
 
-        document.querySelector("#up").ontouchstart = moverU;
-
-        function moverU() {
+        document.querySelector("#up").ontouchstart = function () {
             if (!gameOver) {
                 event.preventDefault();
                 ship.movingUp = true;
             }
-        }
+        };
 
-        document.querySelector("#up").ontouchend = moverUx;
 
-        function moverUx() {
+
+        document.querySelector("#up").ontouchend = function () {
             if (!gameOver) {
                 event.preventDefault();
                 ship.movingUp = false;
             }
-        }
+        };
 
-        document.querySelector("#left").ontouchstart = moverL;
+        document.querySelector("#upleft").ontouchstart = function () {
+            if (!gameOver) {
+                event.preventDefault();
+                ship.movingUp = true;
+                ship.movingLeft = true;
+            }
+        };
 
-        function moverL() {
+
+
+        document.querySelector("#upleft").ontouchend = function () {
+            if (!gameOver) {
+                event.preventDefault();
+                ship.movingUp = false;
+                ship.movingLeft = false;
+            }
+        };
+
+        document.querySelector("#left").ontouchstart = function () {
             if (!gameOver) {
                 event.preventDefault();
                 ship.movingLeft = true;
             }
-        }
+        };
 
-        document.querySelector("#left").ontouchend = moverLx;
 
-        function moverLx() {
+
+        document.querySelector("#left").ontouchend = function () {
             if (!gameOver)  {
                 event.preventDefault();
                 ship.movingLeft = false;
             }
-        }
+        };
 
-        document.querySelector("#right").ontouchstart = moverR;
 
-        function moverR() {
+        document.querySelector("#upright").ontouchstart = function () {
+            if (!gameOver) {
+                event.preventDefault();
+                ship.movingUp = true;
+                ship.movingRight = true;
+            }
+        };
+
+
+
+        document.querySelector("#upright").ontouchend = function () {
+            if (!gameOver) {
+                event.preventDefault();
+                ship.movingUp = false;
+                ship.movingRight = false;
+            }
+        };
+
+        document.querySelector("#right").ontouchstart = function () {
             if (!gameOver) {
                 event.preventDefault();
                 ship.movingRight = true;
             }
-        }
+        };
 
-        document.querySelector("#right").ontouchend = moverRx;
 
-        function moverRx() {
+
+        document.querySelector("#right").ontouchend = function () {
             if (!gameOver)  {
                 event.preventDefault();
                 ship.movingRight = false;
             }
-        }
+        };
 
-            document.querySelector("#down").ontouchstart = moverD;
 
-            function moverD() {
-                if (!gameOver) {
-                    event.preventDefault();
-                    ship.movingDown = true;
-                }
-            }
 
-            document.querySelector("#down").ontouchend = moverDx;
+        document.querySelector("#down").ontouchstart = function () {
+                    if (!gameOver) {
+                        event.preventDefault();
+                        ship.movingDown = true;
+                    }
+                };
 
-            function moverDx() {
+
+        document.querySelector("#down").ontouchend = function () {
                 if (!gameOver)  {
                     event.preventDefault();
                     ship.movingDown = false;
                 }
+            };
+
+
+
+        document.querySelector("#downleft").ontouchstart = function () {
+            if (!gameOver) {
+                event.preventDefault();
+                ship.movingDown = true;
+                ship.movingLeft = true;
             }
+        };
 
 
 
-            document.querySelector("#fire").ontouchstart = moverF;
+        document.querySelector("#downleft").ontouchend = function () {
+            if (!gameOver) {
+                event.preventDefault();
+                ship.movingDown = false;
+                ship.movingLeft = false;
+            }
+        };
 
-            function moverF() {
-                if(!gameOver)  {
-                    event.preventDefault();
-                    if (ship.rocketFireable) {
-                        var rocket = ship.fireRocket();
-                        rockets.addItem(rocket);
-                    }
-                    ship.rocketFireable = false;
+
+        document.querySelector("#downright").ontouchstart = function () {
+            if (!gameOver) {
+                event.preventDefault();
+                ship.movingDown = true;
+                ship.movingRight = true;
+            }
+        };
+
+
+
+        document.querySelector("#downright").ontouchend = function () {
+            if (!gameOver) {
+                event.preventDefault();
+                ship.movingDown = false;
+                ship.movingRight = false;
+            }
+        };
+
+
+        document.querySelector("#fire").ontouchstart = function () {
+            if(!gameOver)  {
+                event.preventDefault();
+                if (ship.rocketFireable) {
+                    var rocket = ship.fireRocket();
+                    rockets.addItem(rocket);
                 }
+                ship.rocketFireable = false;
             }
+        };
 
 
-            document.querySelector("#fire").ontouchend = moverFx;
 
-            function moverFx() {
-                if(!gameOver) {
-                    event.preventDefault();
-                    ship.rocketFireable = true;
-                }
+
+        document.querySelector("#fire").ontouchend = function () {
+            if(!gameOver) {
+                event.preventDefault();
+                ship.rocketFireable = true;
             }
+        };
+
+
 
 
 
@@ -227,82 +295,9 @@ function GameController(){
             }
         });
 
-        $("#up").mousedown(function (event) {
-            if(!gameOver){
-
-                event.preventDefault();
-                ship.movingUp = true;
-            }
-        }).mouseup(function (event) {
-            if(!gameOver){
-
-                event.preventDefault();
-                ship.movingUp = false;
-            }
-        });
-
-        $("#down").mousedown(function (event) {
-            if(!gameOver){
-
-                event.preventDefault();
-                ship.movingDown = true;
-            }
-        }).mouseup(function (event) {
-            if(!gameOver){
-
-                event.preventDefault();
-                ship.movingDown = false;
-            }
-        });
-
-        $("#left").mousedown(function (event) {
-            if(!gameOver){
-
-                event.preventDefault();
-                ship.movingLeft = true;
-            }
-        }).mouseup(function (event) {
-            if(!gameOver){
-
-                event.preventDefault();
-                ship.movingLeft = false;
-            }
-        });
-
-        $("#right").mousedown(function (event) {
-            if(!gameOver){
-
-                event.preventDefault();
-                ship.movingRight = true;
-            }
-        }).mouseup(function (event) {
-            if(!gameOver){
-
-                event.preventDefault();
-                ship.movingRight = false;
-            }
-        });
-
-        $("#fire").mousedown(function (event) {
-            if(!gameOver){
-
-                event.preventDefault();
-                if (ship.rocketFireable) {
-                    var rocket = ship.fireRocket();
-                    rockets.addItem(rocket);
-                }
-                ship.rocketFireable = false;
-            }
-        }).mouseup(function (event) {
-            if(!gameOver) {
-
-                event.preventDefault();
-                ship.rocketFireable = true;
-            }
-        });
 
 
-        }
+        };
 
 
 	var startGameLoop = function(){
