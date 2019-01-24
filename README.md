@@ -1,4 +1,4 @@
-# f14
+# F14
 A javascript game for phonegap build.
 
 I am adding game control functionality for touchscreen phones.
